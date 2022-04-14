@@ -1,5 +1,5 @@
 
-|+++++++++++++++++++++++++++++++++++++++++| Atulizando a atividade adicionando o que faltava |+++++++++++++++++++++++++++++++++++++++++| 
+|+++++++++++++++++++++++++++++++++++++++++| Atulizando a atividade adicionando o que faltava |+++++++++++++++++++++++++++++++++++++++++|
 
 *Organização de codigo/Separação por função
 
@@ -20,3 +20,5 @@
 *Importação das bibliotecas java.io.File; java.io.FileNotFoundException;java.io.Console; alem da já utilizada Scanner
 
 |++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
+
+(OBS: RODAR ATT1)
