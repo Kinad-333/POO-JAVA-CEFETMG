@@ -23,6 +23,7 @@ public class ATT1{
                 Aluno alunos[] = new Aluno[3];
                 pegaDados(alunos);
                 mostraDados(alunos);
+                pausa();
             break;
         }
     }
@@ -45,12 +46,12 @@ public class ATT1{
         int i;
 
         for(i = 0; i < 3; i++){
-            
+
             System.out.print("Digite a nome "+ (i+1) + "º aluno:");
             String nome = input.nextLine();
-            
+
             String senha = new String(console.readPassword("Digite a senha "+ (i+1) + "º aluno: "));
-            
+
 
             System.out.print("Digite a matricula "+ (i+1) + "º aluno: ");
             int matricula = input.nextInt();
@@ -60,7 +61,7 @@ public class ATT1{
 
             System.out.print("Digite a subturma "+ (i+1) + "º aluno: ");
             int subTurma = input.nextInt();
-            
+
             input.nextLine();
 
             Aluno aluno = new Aluno(matricula, grupo, subTurma, nome, senha);
@@ -71,14 +72,14 @@ public class ATT1{
 
     public final static void mostraDados(Aluno alunos[]){
         int i;
-        for(i = 0; i < 3; i++){ 
+        for(i = 0; i < 3; i++){
             System.out.println( "\nDados Aluno " + (i+1)+": " + alunos[i].mostra());
         }
     };
 //FUNÇÃO MAIN
     public static void main(String[] args)throws FileNotFoundException{
         Scanner input = new Scanner(System.in);
-        
+
 
         int resposta;
         limpa();
