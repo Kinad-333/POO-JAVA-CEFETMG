@@ -3,7 +3,7 @@ import java.io.Console;
 import java.io.FileNotFoundException;
 
 
-public class ATT1{
+public class Main{
 
 //FUNÇÃO MAIN
     public static void main(String[] args)throws FileNotFoundException{
