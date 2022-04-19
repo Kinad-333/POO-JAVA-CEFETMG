@@ -2,19 +2,17 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-public class LerArquivo {
-    //define o objeto 
-    String nomeArquivo;
+class LerArquivo {
+    //define o objeto
 
-    public LerArquivo(String arquivo){
-        nomeArquivo = arquivo;
+    public LerArquivo(){
     }
-    //função feita para ler qualquer arquivo 
-    public final static void mostraArquivo(String arquivo) throws FileNotFoundException{
+    //função feita para ler qualquer arquivo
+    public void mostraArquivo(String arquivo) throws FileNotFoundException{
         File arquivoN = new File(arquivo);
-        Scanner leraquivo = new Scanner(arquivoN);
-        while (leraquivo.hasNextLine()){
-            System.out.println(leraquivo.nextLine()+"\n");
+        Scanner lerarquivo = new Scanner(arquivoN);
+        while (lerarquivo.hasNextLine()){
+            System.out.println(lerarquivo.nextLine()+"\n");
         }
     }
 }

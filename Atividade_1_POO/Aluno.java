@@ -11,8 +11,9 @@ class Aluno{
 
     }
     public String mostra(){
-        
+
         String dados = "\n Nome: " + nome + "\n Senha: "+ senhaOculta(senha) + "\n Matricula: " + matricula + "\n Turma: " + subTurma + "\n Grupo: " + grupo + "\n";
+
         return dados;
     }
     public String senhaOculta(String senha){

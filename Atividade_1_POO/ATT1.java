@@ -5,44 +5,71 @@ import java.io.FileNotFoundException;
 
 public class ATT1{
 
-    public final static void menu(int resposta)throws FileNotFoundException{
-
+//FUNÇÃO MAIN
+    public static void main(String[] args)throws FileNotFoundException{
         Scanner input = new Scanner(System.in);
+        Menu menu = new Menu();
+        Util util = new Util();
 
-        pausa();
-        limpa();
+        int resposta;
+        util.limpa();
+        do{
+            util.limpa();
+            System.out.print("\t\t|MENU|\t\t\n");
+            System.out.print("|\t1 - Ver arquivo\t\t|\n|\t2 - Digitar os alunos\t|\n|\t3 - sair\t\t|\nQual deseja: ");
+            resposta = input.nextInt();
+            input.nextLine();
+            menu.menu(resposta);
+        }while(resposta != 3);
+    }
+}
+
+class Menu{
+    public Menu(){
+    }
+    public void menu(int resposta) throws FileNotFoundException {
+        LerArquivo ler = new LerArquivo();
+        Util util = new Util();
+        Scanner input = new Scanner(System.in);
+        Dados dado = new Dados();
+
+        util.pausa();
+        util.limpa();
         switch(resposta){
             case 1:
                 String nomeArquivo;
                 System.out.print("Digite o nome do seu arquivo: ");
                 nomeArquivo = input.nextLine();
-                LerArquivo.mostraArquivo(nomeArquivo);
-                pausa();
+                ler.mostraArquivo(nomeArquivo);
+                util.pausa();
             break;
             case 2:
                 Aluno alunos[] = new Aluno[3];
-                pegaDados(alunos);
-                mostraDados(alunos);
-                pausa();
+                dado.pegaDados(alunos);
+                dado.mostraDados(alunos);
+                util.pausa();
             break;
         }
     }
+}
 
-    public final static void limpa(){
-        System.out.print("\n");
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
+class Dados{
+    public Dados(){
     }
-    public final static void pausa(){
-        Scanner input = new Scanner(System.in);
-        System.out.println("Precione qualquer tecla para continuar ...");
-        input.nextLine();
+    public void mostraDados(Aluno alunos[]){
+        int i;
+        for(i = 0; i < 3; i++){
+            System.out.println( "\nDados Aluno " + (i+1)+": " + alunos[i].mostra());
+        }
     }
 
-    public final static void pegaDados(Aluno alunos[]){
+    public void pegaDados(Aluno alunos[]){
+
 
         Console console = System.console();
         Scanner input= new Scanner(System.in);
+        Util util = new Util();
+
         int i;
 
         for(i = 0; i < 3; i++){
@@ -66,30 +93,7 @@ public class ATT1{
 
             Aluno aluno = new Aluno(matricula, grupo, subTurma, nome, senha);
             alunos[i] = aluno;
-            limpa();
+            util.limpa();
         }
-    }
-
-    public final static void mostraDados(Aluno alunos[]){
-        int i;
-        for(i = 0; i < 3; i++){
-            System.out.println( "\nDados Aluno " + (i+1)+": " + alunos[i].mostra());
-        }
-    };
-//FUNÇÃO MAIN
-    public static void main(String[] args)throws FileNotFoundException{
-        Scanner input = new Scanner(System.in);
-
-
-        int resposta;
-        limpa();
-        do{
-            limpa();
-            System.out.print("\t\t|MENU|\t\t\n");
-            System.out.print("|\t1 - Ver arquivo\t\t|\n|\t2 - Digitar os alunos\t|\n|\t3 - sair\t\t|\nQual deseja: ");
-            resposta = input.nextInt();
-            input.nextLine();
-            menu(resposta);
-        }while(resposta != 3);
     }
 }
