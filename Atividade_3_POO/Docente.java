@@ -2,12 +2,13 @@ import java.io.Console;
 import java.util.Scanner;
 
 public class Docente{
-    protected String email, nome, senha, id;
-    public Docente(String novoId,String novoNome, String novoEmail, String novaSenha){
-        this.id = novoId;
-        this.nome = novoNome;
-        this.email = novoEmail;
-        this.senha = novaSenha;
+    protected String email, nome, senha;
+    int id;
+    public Docente(int id,String nome, String email, String senha){
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
     }
     protected String escondeSenha(String senha) {
         String senhaOculta = "";
@@ -19,6 +20,7 @@ public class Docente{
 
     @Override
     public String toString(){
-        return String.format("'%s'",id);
+        String senhaOculta = escondeSenha(senha);
+        return String.format("Docente\t%d\t%s\t%s\t%s",id,nome,email,senhaOculta);
     }
 }
