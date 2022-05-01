@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import javax.naming.InitialContext;
 import javax.swing.JPanel;
-
+//Parte interna da janela
 public class JogoPainel extends JPanel implements Runnable{
     //Variveis da class para controle dos metodos
     private Thread animacao;
@@ -40,11 +40,16 @@ public class JogoPainel extends JPanel implements Runnable{
         }
     }
     public void run(){
+        boolean ver = false;
         jogando = true;
         while(jogando){
             //verifica a posição da array e usa o metodo
             for(int i = 0; i<= 10;i++){
                 bolas.get(i).move();
+                //ver = colide();
+                //if(ver == true){
+                //    bolas.get(i).move();
+                //}
             }
             repaint();
             try{
@@ -56,16 +61,30 @@ public class JogoPainel extends JPanel implements Runnable{
         System.exit(0);
     }
     public void paintComponent(Graphics g){
+        //Pinta a tela de preta
         super.paintComponent(g);
         //verifica a posição da array e usa o metodo
         for(int i = 0; i<= 10;i++){
             bolas.get(i).paintComponent(g);
         }
     }
+    /*public boolean colide(){
+        double dist = 0;
+        for(int i = 0; i<= 10; i++){
+            dist = Math.sqrt(((bolas.get(i).x - bolas.get(i+1).x)^2)+((bolas.get(i).y - bolas.get(i+1).y)^2));
+        }
+        for(int i = 0; i<= 10; i++){
+            if(dist < bolas.get(i).dimension.height){
+                return true;
+            }
+        return false;
+    }
+    return false;
+}*/
 
     /**
-     *     Usado para controlar  as bolinhas no caso como e para elas ficarem aleatoriamente não esta sendo usado 
-     *     
+     *     Usado para controlar  as bolinhas no caso como e para elas ficarem aleatoriamente não esta sendo usado
+     *
      */
     /*@Override
     public void keyPressed(KeyEvent tecla){
@@ -101,7 +120,7 @@ public class JogoPainel extends JPanel implements Runnable{
             case KeyEvent.VK_DOWN:
                 System.out.println("Solto baixo");
                 y = 0;
-                break;  
+                break;
             case KeyEvent.VK_LEFT:
                 System.out.println("Solto esquerda");
                 x = 0;
