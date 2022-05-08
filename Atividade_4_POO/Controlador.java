@@ -17,7 +17,7 @@ public class Controlador {
         Scanner in = new Scanner(new FileReader(nomeArquivo));
         while (in.hasNext()){
             String linha = in.next();
-            String[] line = linha.split(" ");
+            String[] line = linha.split(" |,");
             int arrTamanho = line.length;
             for(int i = 0; i < arrTamanho;i++){
                 if(line[i].equals(palavra)){
