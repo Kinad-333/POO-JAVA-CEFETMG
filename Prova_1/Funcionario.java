@@ -1,6 +1,6 @@
 public class Funcionario{
     protected String email, nome, senha, cargo;
-    public Funcionario(String email,String nome, String senha, String cargo){
+    public Funcionario(String nome,String email, String senha, String cargo){
         this.nome = nome;
         this.email = email;
         this.senha = senha;

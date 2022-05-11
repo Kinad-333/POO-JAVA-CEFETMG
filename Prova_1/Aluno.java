@@ -1,7 +1,10 @@
 public class Aluno extends Funcionario {
-    protected String turma;
-    public Aluno(String email,String nome, String senha, String cargo, String turma){
+    private String turma;
+    public Aluno(String nome,String email, String senha, String cargo,String turma){
         super( nome, email, senha, cargo);
+        setTurma(turma);
+    }
+    public void setTurma(String turma){
         this.turma = turma;
     }
 

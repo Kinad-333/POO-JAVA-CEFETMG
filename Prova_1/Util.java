@@ -11,8 +11,8 @@ class Util{
     }
     public void pausa(){
         Scanner input = new Scanner(System.in);
-        System.out.println("Precione qualquer tecla para continuar ...");
+        System.out.print("\nPrecione qualquer tecla para cotinuar ...\n");
         input.nextLine();
     }
-    
+
 }

@@ -1,10 +1,9 @@
 public class Administrativo extends Funcionario {
     private String setor;
-    public Administrativo(String email,String nome, String senha, String cargo, String setor){
+    public Administrativo(String nome,String email, String senha, String cargo, String setor){
         super(nome, email, senha, cargo);
         setSetor(setor);
     }
-
     public void setSetor(String setor) {
         if(setor.equals("Biblioteca")||setor.equals("Estagio")||setor.equals("Secretaria")){
             this.setor = setor;

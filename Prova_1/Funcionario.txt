@@ -1,2 +1,4 @@
 
-Aluno	Daniel7	Dakljflkanfo	***************	Docente	INFO3
+Aluno	Adel Comberbach	adelcomberbach22@4shared.com	*********	Discente	CAM2
+Funcionario	Ada Trayte	atrayte5@ox.ac.uk	*******	Docente
+Adminitrativo	Addy Pandie	apandie2l@friendfeed.com	***********	Geral	Estagio

@@ -1,27 +1,33 @@
 import java.util.Scanner;
 import java.io.IOException;
-
+import java.util.Scanner;
+import java.io.File;
+import java.io.PrintWriter;
 public class Main {
     public static void main(String[] args) throws IOException{
         Scanner input = new Scanner(System.in);
-        Menu menu = new Menu();
-        int opcao;
-        String resposta = "s";
         Util util = new Util();
 
-        while(menu.vereficaSeContinua(resposta)){
-            System.out.print("|\tMENU\t\t|");
-            System.out.print("\n| 1 - Funcionario\t|\n| 2 - Administrativo\t|\n| 3 - Aluno\t\t|\n\t\n\nQual opcao deseja: ");
-            opcao = input.nextInt();
-            menu.menu(opcao);
-            input.nextLine();
-            System.out.println("Deseja continuar sim ou nao: ");
-            resposta = input.nextLine();
-            util.pausa();
-            util.limpa();
+        Funcionario funcionario = new Funcionario("Ada Trayte", "atrayte5@ox.ac.uk","BOGZLTh", "Docente");
+        Funcionario aluno = new Aluno("Adel Comberbach", "adelcomberbach22@4shared.com","5wCOkfmLr", "Discente", "CAM2");
+        Funcionario admin = new Administrativo("Addy Pandie", "apandie2l@friendfeed.com", "0lMh6C7XNey","Geral","Estagio");
+
+        System.out.println("Dados\n");
+        System.out.print(aluno);
+        System.out.print(funcionario);
+        System.out.print(admin);
+        util.pausa();
+        util.limpa();
+        File arquivo = new File("Funcionario.txt");
+
+        try(PrintWriter pw = new PrintWriter(arquivo)){
+            pw.print(aluno);
+            pw.print(funcionario);
+            pw.print(admin);
+        }catch(IOException ex){
+            ex.printStackTrace();
         }
-        menu.salvaArquivo("Funcionario.txt");
-        menu.mostra();
+        System.out.print("Gravado com sucesso!");
         util.pausa();
         util.limpa();
     }
