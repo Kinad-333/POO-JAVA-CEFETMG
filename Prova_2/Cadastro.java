@@ -6,8 +6,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import java.io.FileReader;
-import java.io.FileNotFoundException;
+import java.io.File;
+import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 /***
@@ -25,17 +26,16 @@ public class Cadastro extends JFrame  {
 	protected JTextField jtextNome;
 	protected JTextField jtextGrupo;
 
+
 	private JButton jbuttonAnterior;
 	private JButton jbuttonProximo;
 
-	ArrayList <String> nome = new ArrayList<String>();
-	ArrayList <String> numero = new ArrayList<String>();
-	ArrayList <String> grupo = new ArrayList<String>();
-	Dados dados = new Dados(nome, numero, grupo);
+    ArrayList <Dados> dados = new ArrayList<Dados>();
+
 	int indice = 0;
 
 
-	public Cadastro(String titulo) throws FileNotFoundException{
+	public Cadastro(String titulo){
 
 
 
@@ -48,9 +48,9 @@ public class Cadastro extends JFrame  {
 		jLabelNome = new JLabel("Nome" );
 		jLabelGrupo = new JLabel("Grupo");
 
-		jtextNumero = new JTextField(dados.numero.get(indice),10);
-		jtextNome = new JTextField(dados.nome.get(indice),10);
-		jtextGrupo = new JTextField(dados.grupo.get(indice),10);
+		jtextNumero = new JTextField(dados.get(indice).numero + "",10);
+		jtextNome = new JTextField(dados.get(indice).nome,10);
+		jtextGrupo = new JTextField(dados.get(indice).grupo + "",10);
 
 		jbuttonAnterior = new JButton("Anterior");
 		jbuttonProximo= new JButton("Próximo");
@@ -84,23 +84,27 @@ public class Cadastro extends JFrame  {
 
 
 	}
-	public void separa()  throws FileNotFoundException{
-		Scanner in = new Scanner(new FileReader("dados.csv"));
+	public void separa(){
+        try{
+		Scanner in = new Scanner(new File("dados.csv"));
 
         in.nextLine();
-
-        while (in.hasNext()){
-			String[] line = in.nextLine().split(",");
-			numero.add(line[0]);
-			nome.add(line[1]);
-			grupo.add(line[2]);
-		}
-	}
+            while (in.hasNext()){
+			    String[] line = in.nextLine().split(",");
+                String nome = line[1];
+                String numero = line[0];
+                String grupo = line[2];
+		        dados.add(new Dados(nome, Integer.parseInt(numero), Integer.parseInt(grupo)));
+            }
+        }catch(IOException e){
+            System.out.print(e);
+        }
+    }
 
     public void atualiza(){
-        jtextNumero.setText(dados.numero.get(indice));
-        jtextNome.setText(dados.nome.get(indice));
-        jtextGrupo.setText(dados.grupo.get(indice));
+        jtextNumero.setText(dados.get(indice).numero + "");
+        jtextNome.setText(dados.get(indice).nome + "");
+        jtextGrupo.setText(dados.get(indice).grupo + "");
     }
 
 	private class Escutador implements ActionListener {
@@ -108,19 +112,17 @@ public class Cadastro extends JFrame  {
 		@Override
 		public void actionPerformed(ActionEvent event) {
 
-			//Ações ao pressionarem os botões.
-
 			if (event.getSource()==jbuttonAnterior) {
                 indice--;
+                if(indice < 0) {
+                    indice = 25;
+                }
 
 			}else if (event.getSource()==jbuttonProximo) {
 			    indice++;
-            }
-            if(indice < 0){
-                indice = 26;
-            }
-            if(indice > 26){
-                indice = 0;
+                if(indice > 25){
+                    indice = 0;
+                }
             }
             atualiza();
 
@@ -128,7 +130,7 @@ public class Cadastro extends JFrame  {
 
 	}
 
-	public static void main(String[] args) throws FileNotFoundException{
+	public static void main(String[] args) {
 		Cadastro cadastro = new Cadastro("Cadastro");
 		cadastro.pack();
 		cadastro.setSize(210,150);
@@ -139,10 +141,10 @@ public class Cadastro extends JFrame  {
 
 }
 class Dados{
-	ArrayList <String> nome = new ArrayList<String>();
-	ArrayList <String> numero = new ArrayList<String>();
-	ArrayList <String> grupo = new ArrayList<String>();
-	public Dados(ArrayList <String> nome, ArrayList <String> numero, ArrayList <String> grupo){
+    int numero;
+    int grupo;
+    String nome;
+	public Dados(String nome, int numero, int grupo){
 		this.nome = nome;
 		this.numero = numero;
 		this.grupo = grupo;
