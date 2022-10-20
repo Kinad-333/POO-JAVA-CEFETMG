@@ -1,4 +1,4 @@
-import java.awt.Dimension;
+        import java.awt.Dimension;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -33,13 +33,13 @@ public class Main extends JFrame {
     JTextField jtextVersion;
     JTextField jtextPlatform;
     
-    JButton jbuttonInserir;
-    JButton jbuttonLimpar;
+    JButton jbuttonFilme;
+    JButton jbuttonPrograma;
 
-    ArrayList <Libraryitem> items = new ArrayList<Libraryitem>();;
+    ArrayList <Libraryitem> items = new ArrayList<Libraryitem>();
 
-    int indece = 0;
 
+    int indice = 0;
     public void itemInfo(Libraryitem item){
         System.out.println(item.toString());
     }
@@ -71,11 +71,11 @@ public class Main extends JFrame {
         jtextVersion = new JTextField("",10);
         jtextPlatform = new JTextField("",10);
         
-        jbuttonInserir = new JButton("Inserir");
-		jbuttonInserir.setPreferredSize(new Dimension(180,18));
+        jbuttonFilme = new JButton("Filme");
+		jbuttonFilme.setPreferredSize(new Dimension(180,18));
 		
-        //jbuttonLimpar = new JButton("Limpar");
-		//jbuttonLimpar.setPreferredSize(new Dimension(180,18));
+        jbuttonPrograma = new JButton("Programa");
+		jbuttonPrograma.setPreferredSize(new Dimension(180,18));
 
 
         this.add(jLabelTitle);
@@ -96,14 +96,14 @@ public class Main extends JFrame {
         this.add(jLabelVersion);
         this.add(jtextPlatform);
 
-        //this.add(jbuttonLimpar);
-        this.add(jbuttonInserir);
+        this.add(jbuttonFilme);
+        this.add(jbuttonPrograma);
 
         Escutador handler = new Escutador();
 
 		//Adiciona o escutador a cada botão.
-		jbuttonInserir.addActionListener(handler);
-        //jbuttonLimpar.addActionListener(handler);
+		jbuttonFilme.addActionListener(handler);
+        jbuttonPrograma.addActionListener(handler);
 
         items_para_metodo_itemsInfo.add(new Publisheditem("Carros 2", "Disney"));
         items_para_metodo_itemsInfo.add(new Recordeditem("Meu_primeiro video", "YouTube"));
@@ -127,41 +127,44 @@ public class Main extends JFrame {
         jtextVersion.setText(null);
         jtextPlatform.setText(null);
         
+        indice++; 
     }
 
         private class Escutador implements ActionListener {
-            
+            String title;
+            String medium; 
+
+            String director;
+            String date;
+            String distributor; 
+
+
+            String version;
+            String platform;
 
             @Override
             public void actionPerformed(ActionEvent event) {
-                indece ++;			
-                if (event.getSource()==jbuttonInserir) {
-                    String title = jtextTitle.getText();
-                    String medium = jtextMedium.getText();
+                if (event.getSource()==jbuttonFilme) {
+                    title = jtextTitle.getText();
+                    medium = jtextMedium.getText();
 
-                    String director = jtextDirector.getText();
-                    String date = jtextDate.getText();
-                    String distributor = jtextDistributor.getText();
+                    director = jtextDirector.getText();
+                    date = jtextDate.getText();
+                    distributor = jtextDistributor.getText();
 
-
-                    String version = jtextVersion.getText();
-                    String platform = jtextPlatform.getText();
-
-                    if(version.equals(null)){
-                        items.add(new Film(title, medium, director, date, distributor));
-                    }
-                    else if(director.equals(null)){
-                        items.add(new Computer_program(title, medium, version, platform));
-                    }
-                    else{
-                        items.add(new Recordeditem(title, medium));
-                    }
-
-                    atualiza();
-                    System.out.println(items.get(indece));
-
+                    items.add(new Film(title, medium, director, date, distributor));
                 }
-            
+                else if(event.getSource()==jbuttonPrograma){
+                    title = jtextTitle.getText();
+                    medium = jtextMedium.getText();
+                    
+                    version = jtextVersion.getText();
+                    platform = jtextPlatform.getText();
+                    
+                    items.add(new Computer_program(title, medium, version, platform));
+                }
+            System.out.println(items.get(indice));
+            atualiza();
 	    }
     }
     public static void main(String[] args){
